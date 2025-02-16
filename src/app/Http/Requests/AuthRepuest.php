@@ -28,5 +28,14 @@ class AuthRepuest extends FormRequest
             'email' => 'email',
             'password' => 'integer',
         ];
+
+    }
+
+    public function messages()
+    {
+        return [
+            'first_name.required' => '姓を入力してください',
+
+        ];
     }
 }

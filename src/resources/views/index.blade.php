@@ -24,6 +24,13 @@
             <div class="contact-form__heading">
                 <h2>お問い合わせ</h2>
             </div>
+            @if (count($errors) > 0)
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error}}</li>
+                    @endforeach
+                </ul>
+            @endif
             <form class="form" action="/confirm" method="POST">
                 @csrf
                 <div class="form__group">
@@ -42,6 +49,9 @@
                         </div>
                         <div class="form__error">
                             <!--バリデーション機能を実装したら記述します。-->
+                            @error(['first_name', 'last_name'])
+                                {{ $message }}
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -49,14 +59,17 @@
                 <div class="form__group-content">
                     <div class="form__input--radio">
                         <label for="gender_male">男性</label>
-                        <input type="radio" id="gender_male" name="gender" value="{{ old('gender')}}" checked>
+                        <input type="radio" id="gender_male" name="gender" value="男性" {{ old('gender') == '男性' ? 'checked' : '' }} checked>
                         <label for="gender_female">女性</label>
-                        <input type="radio" id="gender_female" name="gender" value="{{ old('gender')}}">
+                        <input type="radio" id="gender_female" name="gender" value="女性" {{ old('gender') == '女性' ? 'checked' : '' }}>
                         <label for="gender_other">その他</label>
-                        <input type="radio" id="gender_other" name="gender" value="{{ old('gender')}}">
+                        <input type="radio" id="gender_other" name="gender" value="その他" {{ old('gender') == 'その他' ? 'checked' : '' }}>
                     </div>
                     <div class="form__error">
                         <!--バリデーション機能を実装したら記述します。-->
+                        @error('gender')
+                            {{ $message }}
+                        @enderror
                     </div>
                 </div>
         </div>
@@ -73,6 +86,9 @@
                 </div>
                 <div class="form__error">
                     <!--バリデーション機能を実装したら記述します。-->
+                    @error('email')
+                        {{ $message }}
+                    @enderror
                 </div>
             </div>
         </div>
@@ -87,6 +103,9 @@
                 </div>
                 <div class="form__error">
                     <!--バリデーション機能を実装したら記述します。-->
+                    @error('tel')
+                        {{ $message }}
+                    @enderror
                 </div>
             </div>
         </div>
@@ -101,6 +120,9 @@
                 </div>
                 <div class="form__error">
                     <!--バリデーション機能を実装したら記述します。-->
+                    @error('address')
+                        {{ $message }}
+                    @enderror
                 </div>
             </div>
         </div>
@@ -133,6 +155,9 @@
                 </div>
                 <div class="form__error">
                     <!--バリデーション機能を実装したら記述します。-->
+                    <!-- @error('category_id')
+                        {{ $message }}
+                    @enderror -->
                 </div>
             </div>
         </div>
@@ -147,6 +172,9 @@
                 </div>
                 <div class="form__error">
                     <!--バリデーション機能を実装したら記述します。-->
+                    @error('detail')
+                        {{ $message }}
+                    @enderror
                 </div>
             </div>
         </div>

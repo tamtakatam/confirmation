@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCotactsTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateCotactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cotacts', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string('first_name');
             $table->string('last_name');
             $table->tinyInteger('gender')->default(1)->comment('1: 男性, 2: 女性, 3: その他');
@@ -34,6 +35,6 @@ class CreateCotactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cotacts');
+        Schema::dropIfExists('contacts');
     }
 }
